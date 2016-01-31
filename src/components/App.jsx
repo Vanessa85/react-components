@@ -1,4 +1,5 @@
 import React from 'react';
+import {RouteHandler} from 'react-router';
 import Header from './Header';
 
 export default class App extends React.Component {
@@ -11,13 +12,9 @@ export default class App extends React.Component {
     <div>
       <Header />
       	<div className="container">
-			<div className="page-header">
-		  		<h1>React Components</h1>
-			</div>
+			<RouteHandler />
 		</div>	
     </div>
     );
   }
 }
-
-React.render(<App />, document.getElementById('main'));

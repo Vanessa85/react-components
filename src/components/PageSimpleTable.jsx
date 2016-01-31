@@ -12,7 +12,7 @@ export default class PageSimpleTable extends React.Component {
         <div className="col-xs-4 col-md-2">
             <div className="list-group">
                 <a href="#basic-table" className="list-group-item active">Tabla básica</a>
-                <a href="#table-style" className="list-group-item">Table Style</a>
+                <a href="#column-width" className="list-group-item">Ancho de Columna</a>
                 <a href="#" className="list-group-item">Morbi leo risus</a>
                 <a href="#" className="list-group-item">Porta ac consectetur ac</a>
                 <a href="#" className="list-group-item">Vestibulum at eros</a>
@@ -45,6 +45,25 @@ export default class PageSimpleTable extends React.Component {
                     </code>
                 </pre>
             </div>
+            <div className="bs-docs-section">
+                <h1 id="column-width" className="page-header">Ancho de Columna</h1>
+                <SimpleTable 
+                    className="table table-bordered table-striped table-hover"
+                        data={products} columns={columnsWidth} />     
+                <pre>
+                    <code>
+                        {"<SimpleTable className='table table-bordered table-striped table-hover' \n"+ 
+                        "   data={products} \n"+
+                        "   columns={columns} /> \n \n" + 
+                        "var columns = {\n"+
+                        "   Id: {name: 'ID', width:'50px'},\n" +
+                        "   Name: {name: 'Product Name'},\n"+
+                        "   Price: {name: 'Product Price', width:'120px'} \n"+ 
+                        "};"
+                        }
+                    </code>
+                </pre>
+            </div>
     	</div>
     </div>
     );
@@ -63,4 +82,10 @@ var columns = {
   Id: {name: 'ID'},
   Name: {name: 'Product Name'},
   Price: {name: 'Product Price'}  
+};
+
+var columnsWidth = {
+  Id: {name: 'ID', width:'50px'},
+  Name: {name: 'Product Name'},
+  Price: {name: 'Product Price', width:'120px'}  
 };

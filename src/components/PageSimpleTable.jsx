@@ -7,7 +7,7 @@ export default class PageSimpleTable extends React.Component {
 
   render() {
     return (
-      <div>Simple Table</div>
+      <div>Simple Table 1</div>
     );
   }
 }

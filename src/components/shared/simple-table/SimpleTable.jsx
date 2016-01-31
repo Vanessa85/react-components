@@ -5,7 +5,7 @@ import PaginationList from './pagination/PaginationList';
 import PaginationPager from './pagination/PaginationPager';
 import Toolbar from './toolbar/Toolbar';
 import FiltersColumns from './filters/FiltersColumns';
-import './simple-table.css';
+//import './simple-table.css';
 
 //const SIZE_PER_PAGE = 10;
 

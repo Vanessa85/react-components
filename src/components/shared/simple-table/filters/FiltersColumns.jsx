@@ -1,6 +1,6 @@
 import React from 'react';
 import FieldCheckbox from './FieldCheckbox';
-import './filters-columns.css';
+//import './filters-columns.css';
 
 export default class FiltersColumns extends React.Component {
 	constructor(props){

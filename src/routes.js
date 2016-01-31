@@ -5,7 +5,7 @@ import PageSimpleTable from './components/PageSimpleTable';
 import PageInputControl from './components/PageInputControl';
 
 var routes = (
-	<Route path='/' handler={App}>
+	<Route path='/react-components/' handler={App}>
 		<DefaultRoute name="simple-table" handler={PageSimpleTable} />
 		<Route name="input-control" handler={PageInputControl} />
 	</Route>

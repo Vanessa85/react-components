@@ -1,0 +1,12 @@
+tfoot.simple-table-footer > tr > td {
+	text-align: right;
+	font-weight: bold;
+}
+.simple-table thead > tr > th div.th-inner.table-header-column{
+	text-align: center;
+}
+
+
+.DTFC_LeftBodyLiner {
+	overflow-x: hidden;
+}

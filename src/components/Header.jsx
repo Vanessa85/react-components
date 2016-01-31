@@ -1,11 +1,14 @@
 import React from 'react';
+import {Link} from 'react-router';
 
-export default class Header extends React.Component {
-  constructor(props) {
-    super(props);
+class Header extends React.Component {
+  constructor(props, context) {
+    super(props, context);
   }
 
   render() {
+  	var pathName = this.context.router.getCurrentPathname();
+
     return (
       <header>
 		<nav className="navbar navbar-default">
@@ -19,6 +22,12 @@ export default class Header extends React.Component {
 			    </button>
 		      	<a className="navbar-brand" href="#">React Components</a>
 		    </div>
+		    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      			<ul className="nav navbar-nav">
+        			<li className={pathName == '/'? 'active': ''}><Link to="simple-table">Simple Table</Link></li>
+        			<li className={pathName == '/input-control'? 'active': ''}><Link to="input-control">Input Control</Link></li>
+      			</ul>
+      		</div>
 		  </div>
 		</nav>
 	</header>	
@@ -26,7 +35,9 @@ export default class Header extends React.Component {
   }
 }
 
+Header.contextTypes = {
+	router: React.PropTypes.func.isRequired
+};
 
-
-
+export default Header;
 

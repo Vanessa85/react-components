@@ -17,7 +17,6 @@ export default class PageSimpleTable extends React.Component {
   render() {
     var selectRowProp = {
         mode: "checkbox",
-        clickToSelect: false,
         bgColor: "rgb(238, 193, 213)",
         onSelect: this.onRowSelect.bind(this),
         onSelectAll: this.onSelectAll.bind(this)
@@ -35,6 +34,7 @@ export default class PageSimpleTable extends React.Component {
                 <a href="#pagination" className="list-group-item">Paginación</a>
                 <a href="#toolbarTable" className="list-group-item">Toolbar</a>
                 <a href="#selectRowTable" className="list-group-item">Seleccionar filas</a>
+                <a href="#footerTable" className="list-group-item">Footer</a>
             </div>
         </div>
     	<div className="col-xs-12 col-md-10">
@@ -210,6 +210,22 @@ export default class PageSimpleTable extends React.Component {
             </div>
             <div className="bs-docs-section">
                 <h1 id="selectRowTable" className="page-header">Seleccionar filas</h1>
+                <p>
+                    Use <code>selectRow</code> para especificar los detalles de la fila seleccionada.
+                    Ademas, selectRow acepta un objeto con las siguientes propiedades:
+                    <br />
+                    <code>mode</code> : checkbox <b>(requerido)</b>
+                     Para especificar la seleccion de una o multiple filas en la tabla.    
+                    <br />
+                    <code>bgColor</code> : color css <b>(opcional)</b>
+                    , se mostra el fondo de la fila seleccionada con el color especificado.
+                    <br />
+                    <code>onSelect</code> : callback function <b>(opcional)</b>
+                    , si se selecciona una fila, esta función será llamada.
+                    <br />
+                    <code>onSelectAll</code>: callback function <b>(opcional)</b>
+                    , si se selecciona todas las filas, esta función será llamada.
+                </p>
                 <SimpleTable 
                     className="table table-bordered table-striped table-hover"
                         data={products} 
@@ -225,7 +241,6 @@ export default class PageSimpleTable extends React.Component {
                         "   selectRow={selectRowProp} /> \n \n" + 
                         "var selectRowProp = { \n"+
                         "    mode: 'checkbox', \n" +
-                        "    clickToSelect: false, \n"+
                         "    bgColor: 'rgb(238, 193, 213)', \n"+
                         "    onSelect: this.onRowSelect.bind(this), \n"+
                         "    onSelectAll: this.onSelectAll.bind(this) \n" +
@@ -236,6 +251,28 @@ export default class PageSimpleTable extends React.Component {
                         "onRowSelect(rowIndex, row, isSelected, selectedRowKey){ \n"+
                         "   console.log('rowIndex', rowIndex, 'selectedRowKey', selectedRowKey);\n"+   
                         "}"
+                        }
+                    </code>
+                </pre>
+            </div>
+            <div className="bs-docs-section">
+                <h1 id="footerTable" className="page-header">Footer</h1>
+                <p>Use <code>footer</code> para mostrar el total por cada columna.</p>
+                <SimpleTable 
+                    className="table table-bordered table-striped table-hover"
+                        data={products} columns={columnsFooter} footer={true} />     
+                <pre>
+                    <code>
+                        {"<SimpleTable className='table table-bordered table-striped table-hover' \n"+ 
+                        "   data={products} \n"+
+                        "   columns={columns} \n" + 
+                        "   footer={true} /> \n \n" + 
+                        "var columns = {\n"+
+                        "   Id: {name: 'ID'},\n" +
+                        "   Name: {name: 'Product Name'},\n"+
+                        "   Price: {name: 'Product Price', footer:true} \n"+ 
+                        "   Stock: {name: 'Stock', footer:true }} \n"+ 
+                        "};"
                         }
                     </code>
                 </pre>
@@ -301,6 +338,13 @@ var columnsOrder = {
   Name: {name: 'Product Name', defaultSortOrder: "desc"},
   Price: {name: 'Product Price', defaultSortOrder: "desc"},
   Stock: {name: 'Stock', defaultSortOrder: "desc"}
+};
+
+var columnsFooter = {
+  Id: {name: 'ID'},
+  Name: {name: 'Product Name'},
+  Price: {name: 'Product Price', footer:true},
+  Stock: {name: 'Stock', footer:true}
 };
 
 var searchFields = ["Name", "Price","Stock"];

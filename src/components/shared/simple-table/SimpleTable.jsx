@@ -366,7 +366,7 @@ export default class SimpleTable extends React.Component {
 						sumador += Number(cellValue);
 					});
 
-					footerTotal.push(<td>{sumador.toFixed(2)}</td>);
+					footerTotal.push(<td style={{textAlign:'right'}}><strong>{sumador.toFixed(2)}</strong></td>);
 				} else {
 					footerTotal.push(<td></td>);
 				}

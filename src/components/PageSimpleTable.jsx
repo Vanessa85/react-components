@@ -24,7 +24,7 @@ export default class PageSimpleTable extends React.Component {
 
     return (
     <div className="row">
-        <div className="col-xs-4 col-md-2">
+        <div className="col-xs-4 col-md-3">
             <div className="list-group">
                 <a href="#basic-table" className="list-group-item">Tabla básica</a>
                 <a href="#column-width" className="list-group-item">Ancho de Columna</a>
@@ -37,7 +37,7 @@ export default class PageSimpleTable extends React.Component {
                 <a href="#footerTable" className="list-group-item">Footer</a>
             </div>
         </div>
-    	<div className="col-xs-12 col-md-10">
+    	<div className="col-xs-12 col-md-9">
             <div className="bs-docs-section">
     		   <h1 id="basic-table" className="page-header">Tabla básica</h1>
                 <SimpleTable 

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class PaginationList extends React.Component {
 	render() {
-		console.log('props pagination', this.props);
+		//console.log('props pagination', this.props);
 		
 		var currentPage = this.props.currentPage;
 		var  buttons = [];
@@ -31,7 +31,7 @@ export default class PaginationList extends React.Component {
 					</li>);
 			}
 
-			buttons.push(<li><a href="javascript:void(0)" className="pagination-num">Página <input type="text" value={currentPage}  /> de {numPages}</a></li>);
+			buttons.push(<li><a href="javascript:void(0)" className="pagination-num">Página <strong>{currentPage}</strong> de {numPages}</a></li>);
 
 			if(currentPage === numPages) {
 				buttons.push(
@@ -61,7 +61,7 @@ export default class PaginationList extends React.Component {
 		}
 
 		return (
-			<ul className="pagination no-margin pagination-sm">
+			<ul className="pagination pagination-sm" style={{margin:0, marginBottom:20}}>
                 {buttons}
             </ul>
 		);

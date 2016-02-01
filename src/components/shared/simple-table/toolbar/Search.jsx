@@ -10,7 +10,7 @@ export default class Search extends React.Component {
 			var column = columns[item];
 			return <option value={item}>{column.name}</option>;
 		});
-
+		if(searchFields.length > 0) {
 		return (
 				<div className="input-group input-group-sm">
 					<input type="text"
@@ -26,8 +26,10 @@ export default class Search extends React.Component {
 				   		</select>
 					</span>
 				</div>
-		
 		);
+		} else {
+			return null;
+		}
 	}
 
 	handleChange(event) {

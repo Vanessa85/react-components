@@ -14,6 +14,11 @@ export default class App extends React.Component {
       	<div className="container">
 			<RouteHandler />
 		</div>	
+        <footer>
+            <div className="container">
+                <p>Todos los derechos reservados</p>
+            </div>
+        </footer>
     </div>
     );
   }

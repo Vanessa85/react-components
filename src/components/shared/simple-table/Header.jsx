@@ -70,7 +70,7 @@ export default class Header extends React.Component {
 			return (
 				<button 
 					className="btn btn-link" 
-					style={{marginLeft:5}}
+					style={{marginLeft:5, padding:0}}
 					onClick={this.props.onSorterColumn.bind(this, columnName, column)}>
 					<span className="glyphicon glyphicon-sort"></span>
 				</button>

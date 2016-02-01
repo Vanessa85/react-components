@@ -24,8 +24,8 @@ class Header extends React.Component {
 		    </div>
 		    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       			<ul className="nav navbar-nav">
-        			<li className={pathName == '/'? 'active': ''}><Link to="simple-table">Simple Table</Link></li>
-        			<li className={pathName == '/input-control'? 'active': ''}><Link to="input-control">Input Control</Link></li>
+        			<li className={pathName == '/'? 'active': ''}><Link to="simple-table">SimpleTable</Link></li>
+        			<li className={pathName == '/input-control'? 'active': ''}><Link to="input-control">InputControl</Link></li>
       			</ul>
       		</div>
 		  </div>

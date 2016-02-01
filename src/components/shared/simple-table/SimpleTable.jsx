@@ -1,4 +1,5 @@
 import React from 'react';
+import assign from 'react/lib/Object.assign';
 import Row from './Row';
 import Header from './Header';
 import PaginationList from './pagination/PaginationList';
@@ -18,7 +19,6 @@ export default class SimpleTable extends React.Component {
 			sort: props.sort || {column: '', order: ''},
 			selectedRowKey: [],
       		currentPage: 1,
-      		//sizePerPage: 10,
       		sizePerPage: this.props.pages[0],
       		filter: '',
       		searchColumn: null,
@@ -28,39 +28,6 @@ export default class SimpleTable extends React.Component {
 
 	}
 
-	/*componentWillUpdate(nextProps, nextState) {
-		if(Object.keys(this.props.dataTable).length > 0) {
-			var table = $(`#${this.props.id}`).DataTable(this.props.dataTable);
-			table.destroy();
-			//parche...
-			$(`#${this.props.id} thead tr th`).css({width:'100px'});
-			$(`#${this.props.id} thead tr th`).eq(1).css({width:'150px'});
-
-			//$('#remove').empty();
-			//var id = document.getElementById(`${this.props.id}`);
-			//	id.removeAttribute('role');
-			//	id.removeAttribute('aria-describedby');
-			//$(`#${this.props.id}`).empty();
-
-		}
-	} */
-
-	/*componentDidUpdate(prevProps, prevState) {
-		if(Object.keys(this.props.dataTable).length > 0) {
-			var table = $(`#${this.props.id}`).DataTable(this.props.dataTable);
-        	table.columns.adjust().draw(true);
-        	table.fixedColumns().relayout();
-        	//removiendo data-reactid
-        	//$('.dataTables_scrollHeadInner table thead tr th').removeAttr('data-reactid');
-        	$('.DTFC_LeftHeadWrapper table thead tr').removeAttr('data-reactid');
-        	$('.DTFC_LeftHeadWrapper table thead tr td').removeAttr('data-reactid');
-			$('.DTFC_LeftBodyWrapper').children().removeAttr('data-reactid');
-			$('.DTFC_LeftBodyWrapper table tbody tr td').removeAttr('data-reactid');
-			$('.DTFC_LeftFootWrapper table tfoot tr td').removeAttr('data-reactid');
-			//$('.dataTables_scrollFootInner table tfoot tr td').removeAttr('data-reactid');
-		}
-	}*/
-
 	render() {
 		var items, numRows;
 		if(this.props.pagination){
@@ -68,7 +35,7 @@ export default class SimpleTable extends React.Component {
 			numRows = dataFilter.count;
 			items = dataFilter.values;
 		} else {
-			items = this.props.data;
+			items = this.getDataOrder(this.props.data);
 			numRows = this.props.numRows;
 		}
 
@@ -142,6 +109,7 @@ export default class SimpleTable extends React.Component {
 		}
 			
 		var isSelectedAll = (this.state.selectedRowKey.length === items.length)? true:false;
+		var style = this.props.pagination? assign({margin:0}, this.props.style):this.props.style;
 
 		return (
 			<div>
@@ -150,7 +118,7 @@ export default class SimpleTable extends React.Component {
 				<div className={ this.props.responsive? "mail table-responsive": ""}>
 					<table 
 						className={`simple-table ${this.props.className}`} 
-						style={this.props.style}>
+						style={style}>
 						<Header 
 							footer={this.props.footer}
 							columns={columns} 
@@ -239,7 +207,7 @@ export default class SimpleTable extends React.Component {
 
       	if (this.state.sort.column != columnName)
         	newSortOrder = column.defaultSortOrder;
-      	
+
       	this.setState({
       		sort: { column: columnName, order: newSortOrder },
       		filter: '',
@@ -282,17 +250,23 @@ export default class SimpleTable extends React.Component {
 		});
 	}
 
+	getDataOrder(data) {
+		var sortedItems = data;
+		if(this.state.sort.column !== '') {
+			//sortedItems = data.sort();
+			if (this.state.sort.order === "desc") {
+				sortedItems = _.sortBy(data, this.state.sort.column).reverse();
+			} else {
+				sortedItems = _.sortBy(data, this.state.sort.column);
+			}
+		} 
+
+		return sortedItems;
+	}
+
 	getPage(page, sizePerPage) {
 		var dataComplete = this.props.data;
-		//order data
-		if(this.state.sort.column !== '') {
-			//console.log('dataComplete', dataComplete, 'column', this.state.sort.column)
-			var sortedItems = _.sortBy(dataComplete, this.state.sort.column);
-			if (this.state.sort.order === "desc") sortedItems.reverse();
-		} else {
-			var sortedItems = dataComplete;
-		}
-		
+		var sortedItems = this.getDataOrder(dataComplete);
 		var data = this.getDataFilter(sortedItems, this.state.searchColumn, this.state.filter);
 
 		var numRows = data.length;
@@ -419,6 +393,7 @@ SimpleTable.defaultProps = {
 	dataTable: {},
 	data: [],
 	pages:['10','25','50','70'],
+	searchFields:[],
 	pagination: false,
 	paginationStyle: "list",
 	toolbar: false,
@@ -448,6 +423,6 @@ SimpleTable.defaultProps = {
   		onSelect: undefined
   	},
   	columnsComplete: null,
-  	style: null
+  	style: {}
 
 };

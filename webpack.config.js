@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 var APP_PATH = path.resolve(__dirname);
+var VENDOR_DIR = path.resolve(APP_PATH, 'vendor');
 
 var config = {
 	entry: {
@@ -13,10 +14,18 @@ var config = {
 	},
 	resolve: {
 		extensions: ['', '.js', '.jsx'],
-		modulesDirectories: ['node_modules']
+		modulesDirectories: ['node_modules'],
+		alias: {
+			toastr: path.resolve(VENDOR_DIR, 'toastr/toastr.js'),
+			bootstrapValidator: path.resolve(VENDOR_DIR, 'bootstrapValidator/bootstrapValidator.js')
+		}
 	},
 	module: {
 		loaders: [
+			{
+				test: /\.css$/,
+				loaders: ['style', 'css']
+			},
 			{
 				test:/\.jsx?$/,
 				loaders: ['babel'],
@@ -25,10 +34,9 @@ var config = {
 			}
 		]	
 	},
-	/*externals: {
-		'jquery': 'jQuery',
-		//'bootstrap': 'Bootstrap'
-	},*/
+	externals: {
+		'jquery': 'jQuery'
+	},
 	plugins: [
 		//new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
 		/*new webpack.optimize.UglifyJsPlugin({

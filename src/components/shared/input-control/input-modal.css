@@ -1,0 +1,32 @@
+.listbox-container {
+	height: 330px;
+	overflow-y: auto;
+	margin-top: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background: #eee;
+}
+.list-group.listbox-container a.list-group-item {
+    padding: 7px 8px;
+    border:0;
+    border-top: 1px solid #ddd;
+}
+.list-group.listbox-container a.list-group-item .badge {
+	font-size: 11px;
+}
+
+.list-group.listbox-container a.list-group-item:last-child,
+.list-group.listbox-container a.list-group-item:first-child {
+	border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.list-group.listbox-container a.list-group-item:last-child {
+	border-bottom: 1px solid #ddd;	
+}
+.list-group.listbox-container a.list-group-item:first-child{
+	border-top: 0;
+}
+
+.input-modal-btn-group.btn-group {
+	margin-bottom: 15px;
+}
